@@ -5,6 +5,7 @@ import { data } from "./../../../dataGame";
 import { PeddleMoment } from './Paddle';
 import { WallCollision } from './util/WallCollision';
 import { Brick } from './Brick';
+import { BrickCollision } from './util/BrickCollision';
 
 let bricks = []
 let {ballObj, paddleProps, brickObj} = data
@@ -35,10 +36,24 @@ export const Board = () => {
 
       WallCollision(ballObj, canvas);
 
+      let brickCollision;
+
+      for (let i = 0; i < bricks.length; i++) {
+        brickCollision = BrickCollision(ballObj, bricks[i]);
+
+        if (brickCollision.hit && !bricks[i].broke) {
+          if (brickCollision.axis === "X") {
+            ballObj.dx *= -1;
+            bricks[i].broke = true;
+          } else if (brickCollision.axis === "Y") {
+            ballObj.dy *= -1;
+            bricks[i].broke = true;
+          }
+          // add player score
+        }
+      }
+
       PeddleMoment(ctx, canvas, paddleProps)
-
-
-
 
       requestAnimationFrame(render)
     }
