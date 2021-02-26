@@ -17,6 +17,23 @@ export const Board = () => {
       let {ballObj} = data
       BallMovement(ctx, ballObj)
 
+      console.log('ballObj', ballObj);
+
+
+      if(
+        ballObj.y - ballObj.rad <= 0 ||
+        ballObj.y + ballObj.rad >= canvas.height
+      ) { 
+        ballObj.dy *= -1  
+      }
+
+      if(
+        ballObj.x - ballObj.rad <= 0 ||
+        ballObj.x + ballObj.rad >= canvas.width
+      ) { 
+        ballObj.dx *= -1 
+      }
+
       requestAnimationFrame(render)
     }
     render()
