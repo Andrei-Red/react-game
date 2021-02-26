@@ -7,9 +7,10 @@ import { WallCollision } from './util/WallCollision';
 import { Brick } from './Brick';
 import { BrickCollision } from './util/BrickCollision';
 import { PaddleHit } from './util/PaddaleHit';
+import { PlayerStats } from './PlayerStats';
 
 let bricks = []
-let {ballObj, paddleProps, brickObj} = data
+let {ballObj, paddleProps, brickObj, player} = data
 
 
 export const Board = () => {
@@ -29,7 +30,11 @@ export const Board = () => {
         bricks = newBrickSet;
       }
 
+
+
       ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      PlayerStats(ctx, player, canvas)
       
       bricks.map((brick) => {
         return brick.draw(ctx);
@@ -52,7 +57,7 @@ export const Board = () => {
             ballObj.dy *= -1;
             bricks[i].broke = true;
           }
-          // add player score
+          player.score += 10
         }
       }
 
