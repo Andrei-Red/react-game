@@ -6,6 +6,7 @@ import { PeddleMoment } from './Paddle';
 import { WallCollision } from './util/WallCollision';
 import { Brick } from './Brick';
 import { BrickCollision } from './util/BrickCollision';
+import { PaddleHit } from './util/PaddaleHit';
 
 let bricks = []
 let {ballObj, paddleProps, brickObj} = data
@@ -19,6 +20,8 @@ export const Board = () => {
     const render = () => {
       const canvas = canvasRef.current
       const ctx = canvas.getContext('2d')
+
+      paddleProps.y = canvas.height - 30
 
       let newBrickSet = Brick(2, bricks, canvas, brickObj);
 
@@ -54,6 +57,8 @@ export const Board = () => {
       }
 
       PeddleMoment(ctx, canvas, paddleProps)
+
+      PaddleHit(ballObj, paddleProps)
 
       requestAnimationFrame(render)
     }
