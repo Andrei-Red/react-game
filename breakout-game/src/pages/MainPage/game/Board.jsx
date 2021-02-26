@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { BallMovement } from './BallMoment'
 import s from './Board.module.css'
 import { data } from "./../../../dataGame";
+import { WallCollision } from './util/WallCollision';
 
 export const Board = () => {
   const canvasRef = useRef(null)
@@ -16,24 +17,9 @@ export const Board = () => {
 
       let {ballObj} = data
       BallMovement(ctx, ballObj)
-
-      console.log('ballObj', ballObj);
-
-
-      if(
-        ballObj.y - ballObj.rad <= 0 ||
-        ballObj.y + ballObj.rad >= canvas.height
-      ) { 
-        ballObj.dy *= -1  
-      }
-
-      if(
-        ballObj.x - ballObj.rad <= 0 ||
-        ballObj.x + ballObj.rad >= canvas.width
-      ) { 
-        ballObj.dx *= -1 
-      }
-
+ 
+      WallCollision(ballObj, canvas);
+      
       requestAnimationFrame(render)
     }
     render()
