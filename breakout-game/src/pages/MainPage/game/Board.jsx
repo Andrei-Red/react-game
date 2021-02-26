@@ -4,8 +4,11 @@ import s from './Board.module.css'
 import { data } from "./../../../dataGame";
 import { PeddleMoment } from './Paddle';
 import { WallCollision } from './util/WallCollision';
+import { Brick } from './Brick';
 
-let {ballObj, paddleProps} = data
+let bricks = []
+let {ballObj, paddleProps, brickObj} = data
+
 
 export const Board = () => {
   const canvasRef = useRef(null)
@@ -15,9 +18,18 @@ export const Board = () => {
     const render = () => {
       const canvas = canvasRef.current
       const ctx = canvas.getContext('2d')
-  
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+      let newBrickSet = Brick(2, bricks, canvas, brickObj);
+
+      if (newBrickSet && newBrickSet.length > 0) {
+        bricks = newBrickSet;
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      
+      bricks.map((brick) => {
+        return brick.draw(ctx);
+      });
 
       BallMovement(ctx, ballObj)
 
