@@ -1,6 +1,7 @@
-//import { render } from '@testing-library/react'
 import { useEffect, useRef } from 'react'
+import { BallMovement } from './BallMoment'
 import s from './Board.module.css'
+import { data } from "./../../../dataGame";
 
 export const Board = () => {
   const canvasRef = useRef(null)
@@ -12,13 +13,10 @@ export const Board = () => {
       const ctx = canvas.getContext('2d')
   
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      ctx.beginPath()
-      ctx.fillStyle = "red"
-      ctx.arc(x, 50, 20, 0, 1 * Math.PI)
-      ctx.strokeStyle = "black"
-      ctx.fill()
-      ctx.stroke()
-      x += 8
+
+      let {ballObj} = data
+      BallMovement(ctx, ballObj)
+
       requestAnimationFrame(render)
     }
     render()

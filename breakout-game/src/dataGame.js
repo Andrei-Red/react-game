@@ -1,4 +1,4 @@
-export default {
+export const data = {
   ballObj: {
     x: 20,
     y: 200,
