@@ -16,9 +16,9 @@ export const data = {
   },
   player: {
     name: "Andrei",
-    lives: 5,
+    lives: 1,
     score: 0,
-    level: 1,
+    level: 5,
   },
   paddleProps: {
     height: 20,

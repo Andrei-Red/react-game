@@ -45,7 +45,7 @@ export const Board = () => {
           alert ('game over')
 
           player.lives = 5;
-          player.level = 1;
+          player.level = 0;
           player.score = 0;
           ResetGame(ballObj, canvas, paddleProps);
           bricks.length = 0;
