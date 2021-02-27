@@ -8,6 +8,7 @@ import { Brick } from './Brick';
 import { BrickCollision } from './util/BrickCollision';
 import { PaddleHit } from './util/PaddaleHit';
 import { PlayerStats } from './PlayerStats';
+import { CheckGame } from './util/CheckGame';
 
 let bricks = []
 let {ballObj, paddleProps, brickObj, player} = data
@@ -42,7 +43,9 @@ export const Board = () => {
 
       BallMovement(ctx, ballObj)
 
-      WallCollision(ballObj, canvas);
+      CheckGame(bricks, player, canvas, ballObj)
+
+      WallCollision(ballObj, canvas, player, paddleProps);
 
       let brickCollision;
 
