@@ -4,7 +4,7 @@ export const NavBar = () => {
   return (
     <nav class="">
       <div class="nav-wrapper container">
-        <a href="#" class="">Logo</a>
+        <NavLink to="/">Breakout</NavLink>
         <ul id="nav-mobile" class="right">
           <li>
             <NavLink to="/main">Main</NavLink>

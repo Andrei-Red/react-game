@@ -2,7 +2,7 @@ import s from './Footer.module.css'
 
 export const Footer = () => {
   return (
-    <footer className={`${s.footerPosition} page-footer`}>
+    <footer className={`page-footer ${s.footerPosition} `}>
       <div class="footer-copyright">
         <div class="container">
         2021 With the support of RS Shool

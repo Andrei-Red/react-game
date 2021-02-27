@@ -15,7 +15,8 @@ export const data = {
     colors: ["red", "lightblue"],
   },
   player: {
-    name: "Andrei",
+    name: "",
+    lastName: "",
     lives: 1,
     score: 0,
     level: 5,
@@ -27,4 +28,5 @@ export const data = {
     color: "orange",
   },
   screenWith: document.body.clientWidth
+
 };
