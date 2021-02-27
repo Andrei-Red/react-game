@@ -19,62 +19,80 @@ export const Board = () => {
   const canvasRef = useRef(null)
 
   let x = 0
+
   useEffect(() => {
+
     const render = () => {
-      const canvas = canvasRef.current
-      const ctx = canvas.getContext('2d')
+     
+      try { // something going wrong for change page
+        const canvas = canvasRef.current
 
-      paddleProps.y = canvas.height - 30
+        const ctx = canvas.getContext('2d')
 
-      let newBrickSet = Brick(player.level, bricks, canvas, brickObj);
+        paddleProps.y = canvas.height - 30
 
-      if (newBrickSet && newBrickSet.length > 0) {
-        bricks = newBrickSet;
-      }
+        let newBrickSet = Brick(player.level, bricks, canvas, brickObj);
 
-
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      PlayerStats(ctx, player, canvas)
-
-      if(player.lives === 0) {
-        alert ('gameover')
-        ResetGame(ballObj, canvas, paddleProps)
-      }
-      
-      bricks.map((brick) => {
-        return brick.draw(ctx);
-      });
-
-      BallMovement(ctx, ballObj)
-
-      CheckGame(bricks, player, canvas, ballObj)
-
-      WallCollision(ballObj, canvas, player, paddleProps);
-
-      let brickCollision;
-
-      for (let i = 0; i < bricks.length; i++) {
-        brickCollision = BrickCollision(ballObj, bricks[i]);
-
-        if (brickCollision.hit && !bricks[i].broke) {
-          if (brickCollision.axis === "X") {
-            ballObj.dx *= -1;
-            bricks[i].broke = true;
-          } else if (brickCollision.axis === "Y") {
-            ballObj.dy *= -1;
-            bricks[i].broke = true;
-          }
-          player.score += 10
+        if (newBrickSet && newBrickSet.length > 0) {
+          bricks = newBrickSet;
         }
-      }
 
-      PeddleMoment(ctx, canvas, paddleProps)
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      PaddleHit(ballObj, paddleProps)
+        PlayerStats(ctx, player, canvas)
 
-      requestAnimationFrame(render)
+        if(player.lives === 0) {
+          alert ('game over')
+
+          player.lives = 5;
+          player.level = 1;
+          player.score = 0;
+          ResetGame(ballObj, canvas, paddleProps);
+          bricks.length = 0;
+        }
+        if(player.lives === 6) {
+          alert ('you win')
+
+          player.lives = 5;
+          player.level = 1;
+          player.score = 0;
+          ResetGame(ballObj, canvas, paddleProps);
+          bricks.length = 0;
+        }
+        
+        bricks.map((brick) => {
+          return brick.draw(ctx);
+        });
+
+        BallMovement(ctx, ballObj)
+
+        CheckGame(bricks, player, canvas, ballObj)
+
+        WallCollision(ballObj, canvas, player, paddleProps);
+
+        let brickCollision;
+
+        for (let i = 0; i < bricks.length; i++) {
+          brickCollision = BrickCollision(ballObj, bricks[i]);
+
+          if (brickCollision.hit && !bricks[i].broke) {
+            if (brickCollision.axis === "X") {
+              ballObj.dx *= -1;
+              bricks[i].broke = true;
+            } else if (brickCollision.axis === "Y") {
+              ballObj.dy *= -1;
+              bricks[i].broke = true;
+            }
+            player.score += 10
+          }
+        }
+
+        PeddleMoment(ctx, canvas, paddleProps)
+
+        PaddleHit(ballObj, paddleProps)
+
+        requestAnimationFrame(render)
+      }catch {}
     }
     render()
   }, [])

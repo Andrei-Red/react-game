@@ -1,8 +1,8 @@
 import { data } from "./../dataGame";
-//import ResetBall from "./ResetBall";
+import { ResetGame } from "./RestartGame";
 
 export const CheckGame = (bricks, player, canvas, ballObj) => {
-  let { brickObj } = data;
+  let { brickObj,  paddleProps} = data;
 
   let total = 0;
   for (let i = 0; i < bricks.length; i++) {
@@ -12,7 +12,7 @@ export const CheckGame = (bricks, player, canvas, ballObj) => {
   }
   if (total === bricks.length) {
     player.level++;
-    //ResetBall(ballObj, canvas, paddleProps);
+    ResetGame(ballObj, canvas, paddleProps);
     brickObj.y = 50;
   }
 }
