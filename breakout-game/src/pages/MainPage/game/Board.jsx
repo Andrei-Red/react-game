@@ -12,18 +12,20 @@ import { CheckGame } from './util/CheckGame';
 import { ResetGame } from './util/RestartGame'
 
 let bricks = []
-let {ballObj, paddleProps, brickObj, player} = data
-
+let {ballObj, paddleProps, brickObj, player, screenWith} = data
+const test = (screenWith - 450) /2
 
 export const Board = () => {
   const canvasRef = useRef(null)
+  
 
   let x = 0
 
   useEffect(() => {
 
     const render = () => {
-     
+      
+      //console.log('screenWith', test);
       try { // something going wrong for change page
         const canvas = canvasRef.current
 
@@ -94,20 +96,32 @@ export const Board = () => {
         requestAnimationFrame(render)
       }catch {}
     }
+
     render()
   }, [])
 
 
   return (
-    <div >
+
+    <div className={s.wrapper}>
       <canvas 
         id="canvas" 
         className={s.board} 
         ref={canvasRef}
-        onMouseMove={(e) => paddleProps.x = e.clientX - paddleProps.width / 2 - 10} 
-        height="500px" 
-        width="800px"/>
+        onMouseMove={(e) => {
+          const displacement = (screenWith - 800) / 2
+          let position = (e.clientX - paddleProps.width / 2 - 10) - displacement
+          if(screenWith < 850) {
+            position = ((e.clientX - paddleProps.width / 2 - 10) - ((screenWith - 450) / 2) ) * 2 
+          }
+          paddleProps.x = position
+          } 
+        } 
+        height = "500px"
+        width = "800px"
+        />
     </div>
+
 
   )
 }

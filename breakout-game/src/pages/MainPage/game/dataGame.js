@@ -26,4 +26,5 @@ export const data = {
     x: 100,
     color: "orange",
   },
+  screenWith: document.body.clientWidth
 };
