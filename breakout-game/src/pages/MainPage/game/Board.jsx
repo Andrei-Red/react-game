@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { BallMovement } from './BallMoment'
 import s from './Board.module.css'
-import { data } from "./../../../dataGame";
+import { data } from "./dataGame";
 import { PeddleMoment } from './Paddle';
 import { WallCollision } from './util/WallCollision';
 import { Brick } from './Brick';
@@ -9,6 +9,7 @@ import { BrickCollision } from './util/BrickCollision';
 import { PaddleHit } from './util/PaddaleHit';
 import { PlayerStats } from './PlayerStats';
 import { CheckGame } from './util/CheckGame';
+import { ResetGame } from './util/RestartGame'
 
 let bricks = []
 let {ballObj, paddleProps, brickObj, player} = data
@@ -25,7 +26,7 @@ export const Board = () => {
 
       paddleProps.y = canvas.height - 30
 
-      let newBrickSet = Brick(2, bricks, canvas, brickObj);
+      let newBrickSet = Brick(player.level, bricks, canvas, brickObj);
 
       if (newBrickSet && newBrickSet.length > 0) {
         bricks = newBrickSet;
@@ -36,6 +37,11 @@ export const Board = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       PlayerStats(ctx, player, canvas)
+
+      if(player.lives === 0) {
+        alert ('gameover')
+        ResetGame(ballObj, canvas, paddleProps)
+      }
       
       bricks.map((brick) => {
         return brick.draw(ctx);
