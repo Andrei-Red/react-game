@@ -9,8 +9,6 @@ export const StartPage = () => {
     const firstName = document.querySelector('#first_name').value
     const lastName = document.querySelector('#last_name').value
 
-
-    
     if (!firstName || !lastName) {
       swal("Нou need to fill in the input fields");
     } else {
@@ -23,9 +21,7 @@ export const StartPage = () => {
 
       localStorage.setItem('player', JSON.stringify({name: firstName, lastName: lastName}));
       document.querySelector('#linkMainPage').click()
-    }
-    console.log("sfirstName", firstName);
-    
+    } 
   }
 
   return (

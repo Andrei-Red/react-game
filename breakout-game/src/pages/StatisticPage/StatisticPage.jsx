@@ -12,8 +12,6 @@ export const StatisticPage = () => {
   });
 
   const StatisticTable = statisticData.map((plyer) => {
-    console.log(plyer.name);
-
     return (
       <tr>
         <td>{plyer.name}</td>

@@ -12,6 +12,7 @@ import { CheckGame } from './util/CheckGame';
 import { ResetGame } from './util/RestartGame';
 import swal from 'sweetalert';
 import { addStatistic } from './util/addStatistic';
+import { fullScreen } from './util/fullscreen';
 
 let bricks = []
 let {ballObj, paddleProps, brickObj, player, screenWith} = data
@@ -19,12 +20,17 @@ const test = (screenWith - 450) /2
 
 export const Board = () => {
   const canvasRef = useRef(null)
-  
+ 
+
   let x = 0
 
   useEffect(() => {
+    setTimeout(() => {
+      fullScreen()
+    }, 1000);
 
     const render = () => {
+      
     
       try { // something going wrong for change page
         const canvas = canvasRef.current
@@ -104,12 +110,14 @@ export const Board = () => {
     }
 
     render()
+
+
   }, [])
 
 
   return (
 
-    <div className={s.wrapper}>
+    <div id="wrapperCanvas" className={s.wrapper}>
       <canvas 
         id="canvas" 
         className={s.board} 
@@ -131,3 +139,5 @@ export const Board = () => {
 
   )
 }
+
+
