@@ -24,7 +24,7 @@ export const StartPage = () => {
 
   return (
     <div class="row ">
-      <div class="col s12 m6" className={`col s12 m6 ${s.inputGroup}`}>
+      <div className={`col s12 m6 ${s.inputGroup}`}>
         <div class="card hoverable grey lighten-1">
           <div className={`card-content white-text ${s.inputGroupWrapper}`}>
 
@@ -41,8 +41,8 @@ export const StartPage = () => {
           </div>
 
           </div>
-          <div class="row">
-              <div class="col s3 offset-s9">
+          <div class="row" className={`row ${s.buttonWrapper}`}>
+              <div class="">
                 <a className={`waves-effect waves-light btn ${s.button}`} onClick={startGame}>Start</a>
               </div>            
             </div>
