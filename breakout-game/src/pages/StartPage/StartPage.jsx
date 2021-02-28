@@ -16,6 +16,12 @@ export const StartPage = () => {
     } else {
       data.player.name = firstName 
       data.player.lastName = lastName
+
+      data.player.lives = 5
+      data.player.score = 0
+      data.player.level = 1
+
+      localStorage.setItem('player', JSON.stringify({name: firstName, lastName: lastName}));
       document.querySelector('#linkMainPage').click()
     }
     console.log("sfirstName", firstName);

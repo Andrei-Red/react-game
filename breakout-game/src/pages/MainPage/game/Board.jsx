@@ -9,7 +9,9 @@ import { BrickCollision } from './util/BrickCollision';
 import { PaddleHit } from './util/PaddaleHit';
 import { PlayerStats } from './PlayerStats';
 import { CheckGame } from './util/CheckGame';
-import { ResetGame } from './util/RestartGame'
+import { ResetGame } from './util/RestartGame';
+import swal from 'sweetalert';
+import { addStatistic } from './util/addStatistic';
 
 let bricks = []
 let {ballObj, paddleProps, brickObj, player, screenWith} = data
@@ -18,14 +20,12 @@ const test = (screenWith - 450) /2
 export const Board = () => {
   const canvasRef = useRef(null)
   
-
   let x = 0
 
   useEffect(() => {
 
     const render = () => {
-      
-      //console.log('screenWith', test);
+    
       try { // something going wrong for change page
         const canvas = canvasRef.current
 
@@ -44,15 +44,21 @@ export const Board = () => {
         PlayerStats(ctx, player, canvas)
 
         if(player.lives === 0) {
-          alert ('game over')
+          swal("Game over", `You score is ${player.score}`)
+          .then(() => {
+            document.querySelector('#linkStatisticPage').click()
+          });
+          addStatistic(player)
 
           player.lives = 5;
           player.level = 0;
           player.score = 0;
           ResetGame(ballObj, canvas, paddleProps);
           bricks.length = 0;
+          return
         }
         if(player.lives === 6) {
+          swal("Game over");
           alert ('you win')
 
           player.lives = 5;

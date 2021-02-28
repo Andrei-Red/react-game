@@ -19,7 +19,7 @@ export const data = {
     lastName: "",
     lives: 1,
     score: 0,
-    level: 5,
+    level: 2,
   },
   paddleProps: {
     height: 20,
