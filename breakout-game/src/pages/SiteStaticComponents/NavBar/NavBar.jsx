@@ -7,7 +7,7 @@ export const NavBar = () => {
         <NavLink to="/">Breakout</NavLink>
         <ul id="nav-mobile" class="right">
           <li>
-            <NavLink to="/main">Main</NavLink>
+            <NavLink id="linkMainPage"  to="/main">Main</NavLink>
           </li>
           <li>
             <NavLink to="/settings">Settings</NavLink>
