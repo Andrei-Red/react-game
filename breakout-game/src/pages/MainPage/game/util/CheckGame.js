@@ -1,6 +1,7 @@
 import { data } from "./../dataGame";
 import { ResetGame } from "./RestartGame";
 
+
 export const CheckGame = (bricks, player, canvas, ballObj) => {
   let { brickObj,  paddleProps} = data;
 
