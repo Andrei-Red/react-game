@@ -5,12 +5,12 @@ import { data } from './../MainPage/game/dataGame'
 
 export const StartPage = () => {
   const audioSettingsLocal = JSON.parse(localStorage.getItem('audio'))
-  //const soundSettingsLocal = JSON.parse(localStorage.getItem('sound'))
   
   if(!audioSettingsLocal) {
     localStorage.setItem('audio', JSON.stringify({value: "checked"}))
     localStorage.setItem('sound', JSON.stringify({value: ""}))
-    
+    localStorage.setItem('rangeAudio', JSON.stringify({value: "80"}))
+    localStorage.setItem('rangeSound', JSON.stringify({value: "10"}))
   }
 
 

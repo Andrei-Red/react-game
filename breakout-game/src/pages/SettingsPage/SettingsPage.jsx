@@ -2,10 +2,12 @@ import { useRef, useState } from 'react'
 import s from './SettingsPage.module.css'
 
 export const SettingsPage = () => {
-  //const checkAudioRef = useRef()
+  
 
   const audioSettingsLocal = JSON.parse(localStorage.getItem('audio'))
   const [AudioValue, setAudio] = useState(audioSettingsLocal.value)
+
+
   
   const soundSettingsLocal = JSON.parse(localStorage.getItem('sound'))
   const [soundValue, setSound] = useState(soundSettingsLocal.value)
@@ -36,6 +38,24 @@ export const SettingsPage = () => {
     }
   }
 
+  const rangeAudioRef = useRef()
+  const rangeAudioSettingsLocal = JSON.parse(localStorage.getItem('rangeAudio'))
+  const [rangeAudioValue, setRangeAudio] = useState(rangeAudioSettingsLocal.value)
+  const changeRangeAudio = () => {
+    const rangeAudioValue = JSON.parse(localStorage.getItem('rangeAudio')) 
+    localStorage.setItem('rangeAudio', JSON.stringify({value: rangeAudioRef.current.value}))
+    setRangeAudio(rangeAudioRef.current.value)
+  }
+
+  const rangeSoundRef = useRef()
+  const rangeSoundSettingsLocal = JSON.parse(localStorage.getItem('rangeSound'))
+  const [rangeSoundValue, setRangeSound] = useState(rangeSoundSettingsLocal.value)
+  const changeRangeSound = () => {
+    const rangeSoundValue = JSON.parse(localStorage.getItem('rangeSound')) 
+    localStorage.setItem('rangeSound', JSON.stringify({value: rangeSoundRef.current.value}))
+    setRangeSound(rangeSoundRef.current.value)
+  }
+
 
 
   return (
@@ -50,6 +70,11 @@ export const SettingsPage = () => {
                   <label>
                     <input onClick={changeAudio} type="checkbox" checked={AudioValue}/>
                     <span>ON</span>
+                    <div>
+                      <p class="range-field">
+                        <input type="range" ref={rangeAudioRef} onChange={changeRangeAudio} id="rangeAudio" value={rangeAudioValue} min="0" max="100" />
+                      </p>
+                    </div>
                   </label>
                 </p>
                 <br/>
@@ -59,6 +84,11 @@ export const SettingsPage = () => {
                     <input onClick={changeSound} type="checkbox" checked={soundValue}/>
                     <span>ON</span>
                   </label>
+                  <div>
+                      <p class="range-field">
+                        <input ref={rangeSoundRef} onChange={changeRangeSound} type="range" id="rangeSound" value={rangeSoundValue} min="0" max="100" />
+                      </p>
+                  </div>
                 </p>
               </div>
               <div class="card-action">

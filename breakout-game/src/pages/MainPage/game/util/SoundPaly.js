@@ -6,11 +6,13 @@ import fon from "./../../../../assets/audio/foneSound.mp3"
 let check = true
 
 export const soundPalyHit = () => {
+  const volumeS = JSON.parse(localStorage.getItem('rangeAudio')).value
   if(JSON.parse(localStorage.getItem('audio')).value === "checked") {
     const sound = new Howl ({
       src: hit,
       html5: true,
-      autoplay: false
+      autoplay: false,
+      volume: `0.${volumeS}`
     })
     sound.play()
   }
@@ -29,14 +31,14 @@ export const soundPalyNextLevel = () => {
 }
 
 export const soundFon = () => {
-   
+  const volumeSo = JSON.parse(localStorage.getItem('rangeSound')).value
   if(check) {
     check = !check
     if(JSON.parse(localStorage.getItem('sound')).value === "checked") {
       const sound = new Howl ({
         src: fon,
         html5: true,
-        volume: 0.10
+        volume: `0.${volumeSo}`
       })
       sound.play()
       setInterval(() => {
