@@ -14,7 +14,7 @@ import swal from 'sweetalert';
 import { addStatistic } from './util/addStatistic';
 import { fullScreen } from './util/fullscreen';
 ///import { Howl } from 'howler';
-import { soundPalyHit } from "./util/SoundPaly";
+import { soundFon, soundPalyHit } from "./util/SoundPaly";
 
 
 let bricks = []
@@ -23,33 +23,9 @@ const test = (screenWith - 450) /2
 
 export const Board = () => {
   const canvasRef = useRef(null)
- 
-/*   const soundPaly = (src) => {
-    debugger
-    const sound = new Howl ({
-      src,
-      html5: true,
-      autoplay: true
-    })
-
-    sound.stop()
-    sound.play()
-  } */
+  
 
 
-/*   const soundPalyNoRepit = (src) => {
-    debugger
-    const sound = new Howl ({
-      src,
-      html5: true,
-      autoplay: false
-    })
-    sound.play()
-  }
-
-  soundPaly(testMP32) */
-
-  //'./../../../assets/audio/gravity-falls.mp3'
   let x = 0
 
   useEffect(() => {
@@ -58,7 +34,7 @@ export const Board = () => {
     }, 1000);
 
     const render = () => {
-      
+      soundFon()
     
       try { // something going wrong for change page
         const canvas = canvasRef.current

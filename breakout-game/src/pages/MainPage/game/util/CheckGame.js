@@ -1,5 +1,6 @@
 import { data } from "./../dataGame";
 import { ResetGame } from "./RestartGame";
+import { soundPalyNextLevel } from "./SoundPaly";
 
 
 export const CheckGame = (bricks, player, canvas, ballObj) => {
@@ -12,6 +13,7 @@ export const CheckGame = (bricks, player, canvas, ballObj) => {
     }
   }
   if (total === bricks.length) {
+    soundPalyNextLevel()
     player.level++;
     ResetGame(ballObj, canvas, paddleProps);
     brickObj.y = 50;

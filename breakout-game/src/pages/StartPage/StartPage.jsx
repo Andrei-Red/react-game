@@ -4,6 +4,15 @@ import { data } from './../MainPage/game/dataGame'
 
 
 export const StartPage = () => {
+  const audioSettingsLocal = JSON.parse(localStorage.getItem('audio'))
+  //const soundSettingsLocal = JSON.parse(localStorage.getItem('sound'))
+  
+  if(!audioSettingsLocal) {
+    localStorage.setItem('audio', JSON.stringify({value: "checked"}))
+    localStorage.setItem('sound', JSON.stringify({value: ""}))
+    
+  }
+
 
   const startGame = () =>{ 
     const firstName = document.querySelector('#first_name').value
