@@ -13,9 +13,7 @@ import { ResetGame } from './util/RestartGame';
 import swal from 'sweetalert';
 import { addStatistic } from './util/addStatistic';
 import { fullScreen } from './util/fullscreen';
-///import { Howl } from 'howler';
 import { soundFon, soundPalyHit } from "./util/SoundPaly";
-
 
 let bricks = []
 let {ballObj, paddleProps, brickObj, player, screenWith} = data
@@ -24,8 +22,6 @@ const test = (screenWith - 450) /2
 export const Board = () => {
   const canvasRef = useRef(null)
   
-
-
   let x = 0
 
   useEffect(() => {

@@ -63,7 +63,7 @@ export const SettingsPage = () => {
       <div className={s.wrapper}>
         <div className={`row ${s.card}`}>
           <div class="col s12 m12">
-            <div class="card blue-grey darken-1">
+            <div class="card grey lighten-1">
               <div class="card-content white-text">
                 <span class="card-title">Audio</span>
                 <p>
@@ -90,9 +90,10 @@ export const SettingsPage = () => {
                       </p>
                   </div>
                 </p>
-              </div>
-              <div class="card-action">
-                <span class="card-title">Fullscreen: Hotkey - q</span>
+                <hr/>
+                <div class="card-title">
+                  <span class="card-title">Fullscreen: Hotkey - q</span>
+                </div>
               </div>
             </div>
           </div>
